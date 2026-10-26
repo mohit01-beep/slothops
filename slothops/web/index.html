@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlothOps — The Slow & Steady Local AI Agent</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="mascot-icon">🦥</span>
+        <div>
+          <h1>SlothOps</h1>
+          <p class="subtitle">The Slow & Steady Local AI Agent • Hacktoberfest 2026</p>
+        </div>
+      </div>
+      <div class="status-badge" id="aiStatusBadge">
+        <span class="status-dot"></span>
+        <span id="aiStatusText">Detecting Local AI...</span>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-brief">
+        <span class="icon">☕</span> Morning Brief
+      </button>
+      <button class="tab-btn" data-tab="tab-tidy">
+        <span class="icon">🧹</span> Lazy Tidy
+      </button>
+      <button class="tab-btn" data-tab="tab-unwind">
+        <span class="icon">🌙</span> Wind-Down & Soundscape
+      </button>
+      <button class="tab-btn" data-tab="tab-about">
+        <span class="icon">ℹ️</span> Open AI Core
+      </button>
+    </nav>
+
+    <!-- TAB 1: Morning Brief -->
+    <main class="tab-content active" id="tab-brief">
+      <div class="card grid-split">
+        <div class="input-pane">
+          <h2>Messy Brain Dump</h2>
+          <p class="hint">Paste unorganized notes, urgent slack pings, to-dos, or raw thoughts:</p>
+          <textarea id="briefNotesInput" placeholder="- urgent: fix broken auth token bug on staging&#10;- reply to client email about contract terms&#10;- clean up desktop downloads someday&#10;- submit Hacktoberfest project today!&#10;- read 50 tabs of AI research papers&#10;- buy oat milk and avocados&#10;- rewrite entire backend in rust maybe?"></textarea>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="btnGenerateBrief">
+              <span>🦥</span> Synthesize Calm Briefing
+            </button>
+            <button class="btn btn-secondary" id="btnLoadSampleNotes">
+              Load Sample Dump
+            </button>
+          </div>
+        </div>
+
+        <div class="output-pane" id="briefOutputArea">
+          <div class="empty-state">
+            <div class="empty-icon">🦥</div>
+            <h3>Waiting for your chaos</h3>
+            <p>Paste your scattered thoughts on the left and let SlothOps extract the few things that genuinely matter today.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 2: Lazy Tidy -->
+    <main class="tab-content" id="tab-tidy">
+      <div class="card">
+        <div class="tidy-header">
+          <div>
+            <h2>Autonomous Clutter Sorter</h2>
+            <p class="hint">Scan any cluttered directory (like Downloads or project scratchpads) to classify and organize files.</p>
+          </div>
+          <div class="scan-input-group">
+            <input type="text" id="targetDirPath" value="./demo_sandbox" placeholder="Path to folder (e.g. ./demo_sandbox or C:/Users/.../Downloads)">
+            <button class="btn btn-primary" id="btnScanDir">Scan Folder</button>
+          </div>
+        </div>
+
+        <div id="tidyResultsArea" class="tidy-results">
+          <div class="empty-state">
+            <div class="empty-icon">📁</div>
+            <h3>Ready to De-clutter</h3>
+            <p>Scan a local directory to preview how files will be neatly organized into semantic folders.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 3: Wind-Down & Soundscape -->
+    <main class="tab-content" id="tab-unwind">
+      <div class="card grid-split">
+        <div class="input-pane">
+          <h2>Evening Guilt-Free Log</h2>
+          <p class="hint">What did you touch or make progress on today? (Even small steps count!)</p>
+          <textarea id="winddownInput" placeholder="- pushed 3 git commits to the local AI repo&#10;- reviewed 2 PRs&#10;- had a nice conversation with team&#10;- didn't finish everything, but that's okay"></textarea>
+          <button class="btn btn-primary" id="btnGenerateWindDown">
+            <span>🌙</span> Generate Wind-Down Reflection
+          </button>
+        </div>
+
+        <div class="output-pane">
+          <div id="winddownOutputArea">
+            <div class="empty-state">
+              <div class="empty-icon">🛋️</div>
+              <h3>Unwind guilt-free</h3>
+              <p>Tell SlothOps what you worked on, and receive an affirming bedtime summary reminding you that you did enough.</p>
+            </div>
+          </div>
+
+          <!-- Ambient Soundscape Generator -->
+          <div class="soundscape-player">
+            <div class="player-header">
+              <h3>🎵 Procedural Ambient Soundscape</h3>
+              <span class="badge-offline">100% Offline Web Audio</span>
+            </div>
+            <p class="hint">Synthesized directly in your browser. No streams, zero bandwidth.</p>
+            
+            <div class="sound-presets">
+              <button class="sound-chip active" data-sound="rain">🌧️ Rain on Leaves</button>
+              <button class="sound-chip" data-sound="drone">🧘 432Hz Warm Drone</button>
+              <button class="sound-chip" data-sound="forest">🍃 Gentle Breeze</button>
+            </div>
+
+            <div class="player-controls">
+              <button class="btn btn-sound-toggle" id="btnToggleAudio">▶ Play Ambient Sound</button>
+              <div class="volume-slider">
+                <span>🔈</span>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.3">
+                <span>🔊</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- TAB 4: Open AI Core -->
+    <main class="tab-content" id="tab-about">
+      <div class="card">
+        <h2>Why Open Innovation Matters in SlothOps</h2>
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feat-icon">🔒</div>
+            <h3>100% Local Privacy</h3>
+            <p>Your messy personal notes, tax receipts, code snippets, and daily journals never leave your hardware. No proprietary cloud scraping.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feat-icon">⚡</div>
+            <h3>Zero Operational Costs</h3>
+            <p>No monthly token subscriptions, API keys, credit cards, or rate limits. True computing freedom on your own laptop.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feat-icon">🦥</div>
+            <h3>Slow & Steady Resilience</h3>
+            <p>Works completely offline—on airplanes, trains, or in remote cabins. If your local LLM isn't loaded, our deterministic heuristic fallback still runs seamlessly.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feat-icon">🧩</div>
+            <h3>Open-Weight Freedom</h3>
+            <p>Swap between Llama 3.2, Qwen 2.5, Gemma 2, Mistral, or custom fine-tunes effortlessly via Ollama or any local endpoint.</p>
+          </div>
+        </div>
+
+        <div class="engine-info-card">
+          <h3>Active Inference Configuration</h3>
+          <pre id="engineInfoJson">Loading model diagnostics...</pre>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Built with ❤️ for <strong>Hacktoberfest 2026 Week 3: Slow and Steady</strong> • Open-Source under MIT License</p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

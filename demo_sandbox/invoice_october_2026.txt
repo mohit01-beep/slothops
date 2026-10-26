@@ -1,0 +1,6 @@
+INVOICE #2026-10-882
+Billed to: Acme Corp
+Total Amount: $450.00 USD
+Payment Status: Paid
+Date: 2026-10-20
+Tax ID: US-992-0012

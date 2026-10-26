@@ -82,7 +82,7 @@ flowchart TD
 ### 1. Installation
 Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/your-username/slothops.git
+git clone https://github.com/mohit01-beep/slothops.git
 cd slothops
 pip install -e .
 ```

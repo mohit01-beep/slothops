@@ -62,7 +62,7 @@ Engine: Local LLM (Llama 3.2 / Qwen 2.5) | Minutes Saved: ~24m
 
 The complete source code, test suite, and interactive dashboard are open source under the MIT License:
 
-{% github https://github.com/your-username/slothops %}
+{% github https://github.com/mohit01-beep/slothops %}
 
 *(Repository contents include FastAPI server, Click CLI, local LLM orchestration engine, procedural Web Audio sound generator, automated test suite, and ready-to-test sample sandbox files).*
 
